@@ -1,0 +1,57 @@
+# ===================================================================
+# .gitignore Definitivo para Projetos Spring (Maven/Gradle)
+# Combina as melhores práticas e cobre múltiplas IDEs e OS.
+# ===================================================================
+
+# 1. Arquivos de Build (Maven e Gradle)
+# Pastas geradas que contêm os arquivos compilados e artefatos.
+# NUNCA versione estas pastas.
+target/
+build/
+
+# Artefatos de build explícitos para segurança extra.
+# A regra acima já cobre, mas não custa ser explícito.
+*.jar
+*.war
+*.class
+
+# 2. Arquivos de Configuração de IDE (IntelliJ e VS Code)
+# Configurações específicas da máquina e do projeto do desenvolvedor.
+.idea/
+.vscode/
+*.iml
+*.iws
+
+# 3. Logs e Arquivos Temporários
+# Arquivos gerados durante a execução da aplicação.
+logs/
+*.log
+*.tmp
+
+# 4. Arquivos do Sistema Operacional
+# Metadados de sistema (macOS, Windows).
+.DS_Store
+Thumbs.db
+
+# 5. Arquivos da JVM
+# Relatórios de "crash" da Java Virtual Machine.
+hs_err_pid*
+
+# 6. Arquivos de Configuração de Ambiente e Segredos (PONTO CRÍTICO)
+# IGNORE apenas arquivos locais ou de ambiente que contêm senhas/chaves.
+# NUNCA ignore os arquivos de configuração padrão (application.properties/yml).
+.env
+*.env
+application-local.properties
+application-local.yml
+application-dev.properties
+application-dev.yml
+
+# ===================================================================
+# Arquivos que NÃO DEVEM estar aqui:
+# - application.properties
+# - application.yml
+# - pom.xml
+# - build.gradle
+# - src/
+# ===================================================================
