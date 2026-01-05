@@ -1,9 +1,13 @@
 package br.com.fiap.locatech.service;
 
+import br.com.fiap.locatech.dtos.AluguelRequestDTO;
 import br.com.fiap.locatech.entities.Aluguel;
+import br.com.fiap.locatech.entities.Veiculo;
 import br.com.fiap.locatech.repositories.AluguelRepository;
+import br.com.fiap.locatech.repositories.VeiculoRespository;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,9 +15,11 @@ import java.util.Optional;
 public class AluguelService {
 
     private final AluguelRepository aluguelRepository;
+    private final VeiculoRespository veiculoRespository;
 
-    public AluguelService(AluguelRepository aluguelRepository) {
+    public AluguelService(AluguelRepository aluguelRepository, VeiculoRespository veiculoRespository) {
         this.aluguelRepository = aluguelRepository;
+        this.veiculoRespository = veiculoRespository;
     }
 
     public Optional<Aluguel> findById (Long id) {
@@ -25,8 +31,9 @@ public class AluguelService {
         return this.aluguelRepository.findAlL(size, offset);
     }
 
-    public Integer save(Aluguel aluguel) {
-        return this.aluguelRepository.save(aluguel);
+    public Integer save(AluguelRequestDTO aluguel) {
+        var aluguelEntity = calculaValorTotal(aluguel);
+        return this.aluguelRepository.save(aluguelEntity);
     }
 
     public Integer update(Aluguel aluguel, Long id) {
@@ -35,5 +42,12 @@ public class AluguelService {
 
     public Integer delete (Long id) {
         return this.aluguelRepository.delete(id);
+    }
+
+    private Aluguel calculaValorTotal (AluguelRequestDTO aluguelRequestDTO) {
+        var veiculo = this.veiculoRespository.findById(aluguelRequestDTO.veiculoId()).orElseThrow(() -> new RuntimeException("Veiculo não encontrado"));
+        var qtdDiarias = BigDecimal.valueOf(aluguelRequestDTO.dataFim().getDayOfYear() - aluguelRequestDTO.dataInicio().getDayOfYear());
+        var valorTotal = veiculo.getValorDiaria().multiply(qtdDiarias);
+        return new Aluguel(aluguelRequestDTO, valorTotal);
     }
 }

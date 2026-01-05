@@ -70,7 +70,7 @@ public class AluguelRepositoryImpl implements AluguelRepository {
                 .param("pessoa_id", aluguel.getPessoaId())
                 .param("veiculo_id", aluguel.getVeiculoId())
                 .param("data_inicio", aluguel.getDataInicio())
-                .param("data_fim", aluguel.getDataInicio())
+                .param("data_fim", aluguel.getDataFim())
                 .param("valor_total", aluguel.getValorTotal())
                 .update();
     }

@@ -1,5 +1,6 @@
 package br.com.fiap.locatech.controllers;
 
+import br.com.fiap.locatech.dtos.AluguelRequestDTO;
 import br.com.fiap.locatech.entities.Aluguel;
 import br.com.fiap.locatech.service.AluguelService;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +35,7 @@ public class AluguelController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> save(@RequestBody Aluguel aluguel) {
+    public ResponseEntity<Void> save(@RequestBody AluguelRequestDTO aluguel) {
         this.aluguelService.save(aluguel);
         return ResponseEntity.ok().build();
     }
