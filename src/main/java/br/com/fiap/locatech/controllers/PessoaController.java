@@ -4,7 +4,6 @@ import br.com.fiap.locatech.entities.Pessoa;
 import br.com.fiap.locatech.service.PessoaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 

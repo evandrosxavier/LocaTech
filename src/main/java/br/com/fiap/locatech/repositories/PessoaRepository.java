@@ -1,9 +1,9 @@
 package br.com.fiap.locatech.repositories;
 
 import br.com.fiap.locatech.entities.Pessoa;
-
 import java.util.List;
 import java.util.Optional;
+
 
 public interface PessoaRepository {
 

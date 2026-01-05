@@ -57,3 +57,30 @@ INSERT INTO pessoas (nome, cpf, telefone, email) VALUES ('Ziraldo Antunes Viana'
 INSERT INTO pessoas (nome, cpf, telefone, email) VALUES ('Laura Pires Cardoso', '565.676.787-89', '(71) 92109-7890', 'laura.cardoso@example.com');
 
 
+    CREATE TABLE alugueis (
+        id BIGINT AUTO_INCREMENT PRIMARY KEY,
+        pessoa_id BIGINT NOT NULL,
+        veiculo_id BIGINT NOT NULL,
+        data_inicio DATE,
+        data_fim DATE,
+        valor_total DECIMAL (10, 2),
+        FOREIGN KEY (pessoa_id) REFERENCES pessoas(id),
+        FOREIGN KEY (veiculo_id) REFERENCES veiculos(id)
+    );
+
+    -- Script para popular a tabela 'alugueis' com 10 registros de exemplo.
+    -- pessoa_id está no intervalo de 1 a 20.
+    -- veiculo_id está no intervalo de 1 a 10.
+
+    INSERT INTO alugueis (pessoa_id, veiculo_id, data_inicio, data_fim, valor_total) VALUES (1, 7, '2024-05-10', '2024-05-15', 850.00);
+    INSERT INTO alugueis (pessoa_id, veiculo_id, data_inicio, data_fim, valor_total) VALUES (15, 2, '2024-06-20', '2024-06-22', 350.50);
+    INSERT INTO alugueis (pessoa_id, veiculo_id, data_inicio, data_fim, valor_total) VALUES (8, 10, '2024-07-01', '2024-07-08', 1400.00);
+    INSERT INTO alugueis (pessoa_id, veiculo_id, data_inicio, data_fim, valor_total) VALUES (20, 1, '2024-08-15', '2024-08-20', 950.75);
+    INSERT INTO alugueis (pessoa_id, veiculo_id, data_inicio, data_fim, valor_total) VALUES (3, 5, '2024-09-05', '2024-09-15', 2100.00);
+    INSERT INTO alugueis (pessoa_id, veiculo_id, data_inicio, data_fim, valor_total) VALUES (11, 8, '2024-10-10', '2024-10-12', 420.00);
+    INSERT INTO alugueis (pessoa_id, veiculo_id, data_inicio, data_fim, valor_total) VALUES (5, 3, '2024-11-21', '2024-11-28', 1330.00);
+    INSERT INTO alugueis (pessoa_id, veiculo_id, data_inicio, data_fim, valor_total) VALUES (18, 9, '2024-12-22', '2025-01-02', 2500.50);
+    INSERT INTO alugueis (pessoa_id, veiculo_id, data_inicio, data_fim, valor_total) VALUES (2, 4, '2025-01-03', '2025-01-04', 180.00);
+    INSERT INTO alugueis (pessoa_id, veiculo_id, data_inicio, data_fim, valor_total) VALUES (19, 6, '2025-01-05', '2025-01-10', 975.00);
+
+
