@@ -5,6 +5,7 @@ import br.com.fiap.locatech.entities.Aluguel;
 import br.com.fiap.locatech.entities.Veiculo;
 import br.com.fiap.locatech.repositories.AluguelRepository;
 import br.com.fiap.locatech.repositories.VeiculoRespository;
+import br.com.fiap.locatech.service.exceptions.ResouceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -23,7 +24,8 @@ public class AluguelService {
     }
 
     public Optional<Aluguel> findById (Long id) {
-        return this.aluguelRepository.findById(id);
+        return Optional.ofNullable(this.aluguelRepository.findById(id)
+                .orElseThrow(() -> new ResouceNotFoundException("Aluguel não encontrado")));
     }
 
     public List<Aluguel> findAll (int page, int size) {
