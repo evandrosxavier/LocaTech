@@ -2,6 +2,7 @@ package br.com.fiap.locatech.controllers;
 
 import br.com.fiap.locatech.entities.Veiculo;
 import br.com.fiap.locatech.service.VeiculoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping ("/veiculos")
+@Tag(name = "Veículo Controller", description = "(Controller para crud de veículos)")
 public class VeiculoController {
 
     private final VeiculoService veiculoService;
